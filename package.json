@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
+  },
+  "scripts": {
+    "watch": "shadow-cljs watch app",
+    "test": "shadow-cljs watch test"
+  }
+}
