@@ -1,15 +1,15 @@
 (ns app.main
   (:require
-    [app.sound :refer [pitch-for-key]]
+    [app.sound :refer [pitch-for-key audio-context oscillator]]
     [reagent.core :as r]
     [reagent.dom :as rdom]))
 
 (defonce audio-data (r/atom {:pitch 0 :volume 0 :waveform "sine"}))
 
+(defonce ctx (audio-context))
+
 (defn update-value [key value]
       (swap! audio-data assoc key value))
-
-(def audio-context js/AudioContext.)
 
 (defonce note-map {1 "A" 2 "A#" 3 "B" 4 "C" 5 "C#" 6 "D" 7 "D#" 8 "E" 9 "F" 10 "F#" 11 "G" 12 "G#"})
 
@@ -47,7 +47,9 @@
        [waveform-selector-component]])
 
 (defn synth-component []
-      [:div [synth-controls-component] [keyboard-component]])
+      (let [osc (oscillator ctx "sine" "440")]
+            (println osc)
+           [:div [synth-controls-component] [keyboard-component]]))
 
 (defn main-page-component []
       [:main
