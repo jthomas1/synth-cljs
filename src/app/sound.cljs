@@ -6,13 +6,14 @@
 
 (defn audio-context [] (js/window.AudioContext.))
 
+(defn current-time [context]
+      (.-currentTime context))
+
 (defn connect [node context]
       (.connect context node))
 
-(defn oscillator [context type freq]
-      (println context)
-      (let [osc (.createOscillator  context)]
-           (set! (.-type osc) type)
-           (set! (.-frequency osc) freq)
-           osc)
-      )
+(defn gain [context]
+      (.createGain context))
+
+(defn oscillator [context]
+     (.createOscillator context))
