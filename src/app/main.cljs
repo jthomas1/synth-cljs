@@ -21,7 +21,7 @@
   (println pitch)
   (let [amp (gain ctx)]
     (set! (.-type osc) (:waveform @audio-data))
-    (set! (.-frequency osc) pitch)
+    (set! (.-value (.-frequency osc)) pitch)
     (set! (.-gain amp) (:volume @audio-data))
     (.connect amp (.-destination ctx))
     (.connect osc amp)
